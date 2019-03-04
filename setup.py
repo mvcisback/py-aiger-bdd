@@ -5,7 +5,7 @@ DESC = 'TODO'
 
 setup(
     name='py-aiger-bdd',
-    version='0.0.0',
+    version='0.1.0',
     description=DESC,
     url='http://github.com/mvcisback/py-aiger-bdd',
     author='Marcell Vazquez-Chanlatte',
