@@ -1,7 +1,7 @@
 from setuptools import find_packages
 from distutils.core import setup
 
-DESC = 'TODO'
+DESC = 'Aiger <-> BDD bridge.'
 
 setup(
     name='py-aiger-bdd',
