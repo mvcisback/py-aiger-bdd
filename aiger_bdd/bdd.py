@@ -54,11 +54,11 @@ def to_bdd(circ_or_expr, output=None, manager=None, renamer=None):
     return gate_nodes[output], manager, bidict(input_refs_to_var)
 
 
-BDDEXPR_GRAMMAR = Grammar(u'''
+BDDEXPR_GRAMMAR = Grammar(r'''
 bdd_expr = neg / ite / id / const
 ite = "ite(" id ", " bdd_expr ", " bdd_expr ")"
 neg = "(~ " bdd_expr ")"
-id = ~r"[a-z\d]+"
+id = ~"[a-z\\d]+"
 const = "TRUE" / "FALSE"
 ''')
 
@@ -71,7 +71,7 @@ class BDDExprVisitor(NodeVisitor):
         return aiger.atom(node.text)
 
     def visit_ite(self, _, children):
-        return children[1].select(children[3], children[5])
+        return aiger.ite(children[1], children[3], children[5])
 
     def visit_neg(self, _, children):
         return ~children[1]
