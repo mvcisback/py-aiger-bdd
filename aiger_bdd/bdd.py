@@ -91,3 +91,10 @@ def from_bdd(bdd_func, manager=None):
     if manager:
         return _parse_bddexpr(manager.to_expr(bdd_func))
     return _parse_bddexpr(bdd_func.to_expr())
+
+
+def count(circ_or_expr, percent=False, output=None):
+    f, *_ = to_bdd(circ_or_expr, output)
+    n_inputs = len(circ_or_expr.inputs)
+    num_models = f.count(n_inputs)
+    return num_models / (2**n_inputs) if percent else num_models

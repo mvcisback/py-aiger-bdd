@@ -1,8 +1,9 @@
 import hypothesis.strategies as st
 from aiger import hypothesis as aigh
-from hypothesis import given
+from aigerbv import atom
+from hypothesis import given, settings
 
-from aiger_bdd import to_bdd, from_bdd
+from aiger_bdd import to_bdd, from_bdd, count
 
 
 @given(aigh.Circuits, st.data())
@@ -23,3 +24,10 @@ def test_bdd_transform(circ, data):
     # TEST BDD version agrees.
     f2 = manager.let({relabel[k]: v for k, v in test_input.items()}, f)
     assert (f2 == manager.true) == (circ(test_input)[0][out])
+
+
+@settings(max_examples=4, deadline=None)
+@given(st.integers(0, 7))
+def test_count_le(i):
+    expr = atom(4, 'x', signed=False) < atom(4, i, signed=False)
+    assert count(expr.aigbv.aig) == i
