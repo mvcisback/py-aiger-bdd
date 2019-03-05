@@ -24,6 +24,6 @@ expr = x < 5  # Could be an AIG or AIGBV or BoolExpr.
 bdd = to_bdd(expr)  # Convert circuit encoded by expr into a BDD.
 expr2 = from_bdd(bdd)  # Creates an Aiger Expression from a BDD.
 
-assert count(expr) == 5/8
+assert count(expr, fraction=True) == 5/8
 assert count(expr, fraction=False) == 5
 ```
