@@ -19,8 +19,8 @@ def to_bdd(circ_or_expr, output=None, manager=None, renamer=None):
             _count += 1
             return f"x{_count}"
 
-    if isinstance(circ_or_expr, aiger.BoolExpr):
-        circ, output = circ_or_expr.aig, circ_or_expr.output
+    if not isinstance(circ_or_expr, aiger.AIG):
+        circ, output = circ_or_expr.aig, fn.first(circ_or_expr.aig.outputs)
     else:
         circ = circ_or_expr
 
@@ -93,8 +93,11 @@ def from_bdd(bdd_func, manager=None):
     return _parse_bddexpr(bdd_func.to_expr())
 
 
-def count(circ_or_expr, percent=False, output=None):
+def count(circ_or_expr, fraction=False, output=None):
     f, *_ = to_bdd(circ_or_expr, output)
+    if not isinstance(circ_or_expr, aiger.AIG):
+        circ_or_expr = circ_or_expr.aig
+
     n_inputs = len(circ_or_expr.inputs)
     num_models = f.count(n_inputs)
-    return num_models / (2**n_inputs) if percent else num_models
+    return (num_models / (2**n_inputs)) if fraction else num_models
