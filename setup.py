@@ -5,7 +5,7 @@ DESC = 'Aiger <-> BDD bridge.'
 
 setup(
     name='py-aiger-bdd',
-    version='0.2.0',
+    version='0.2.1',
     description=DESC,
     url='http://github.com/mvcisback/py-aiger-bdd',
     author='Marcell Vazquez-Chanlatte',
