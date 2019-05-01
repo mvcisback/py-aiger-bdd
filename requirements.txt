@@ -6,7 +6,7 @@ codecov==2.0.15
 dd==0.5.4
 funcy==1.12
 bidict==0.18.0
-hypothesis==4.6.1
+hypothesis==4.18.3
 parsimonious==0.8.1
 pytest==4.3.0
 pytest-cov==2.6.1
