@@ -4,7 +4,7 @@ git+git://github.com/mvcisback/hypothesis-cfg.git@master#egg=hypothesis_cfg
 attrs==19.2.0
 codecov==2.0.15
 dd==0.5.4
-funcy==1.12
+funcy==1.13
 bidict==0.18.0
 hypothesis==4.24.0
 parsimonious==0.8.1
