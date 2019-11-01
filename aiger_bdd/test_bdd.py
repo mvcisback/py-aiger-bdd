@@ -30,4 +30,5 @@ def test_bdd_transform(circ, data):
 @given(st.integers(0, 7))
 def test_count_le(i):
     expr = atom(4, 'x', signed=False) < atom(4, i, signed=False)
-    assert count(expr.aigbv.aig) == i
+    assert count(expr) == i
+    assert count(expr, fraction=True) == i / (2**4)

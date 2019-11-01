@@ -101,5 +101,5 @@ def count(circ_or_expr, fraction=False, output=None):
         circ_or_expr = circ_or_expr.aig
 
     n_inputs = len(circ_or_expr.inputs)
-    num_models = f.count(n_inputs)
+    num_models = int(f.count(n_inputs))
     return Fraction(num_models, (2**n_inputs)) if fraction else num_models
