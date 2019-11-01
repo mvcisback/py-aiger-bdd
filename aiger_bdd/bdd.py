@@ -3,7 +3,6 @@ import funcy as fn
 from aiger import common as cmn
 from bidict import bidict
 from fractions import Fraction
-from parsimonious import Grammar, NodeVisitor
 
 try:
     from dd.cudd import BDD
@@ -55,44 +54,18 @@ def to_bdd(circ_or_expr, output=None, manager=None, renamer=None):
     return gate_nodes[output], manager, bidict(input_refs_to_var)
 
 
-BDDEXPR_GRAMMAR = Grammar(r'''
-bdd_expr = neg / ite / id / const
-ite = "ite(" id ", " bdd_expr ", " bdd_expr ")"
-neg = "(~ " bdd_expr ")"
-id = ~"[a-z\\d]+"
-const = "TRUE" / "FALSE"
-''')
-
-
-class BDDExprVisitor(NodeVisitor):
-    def generic_visit(self, _, children):
-        return children
-
-    def visit_id(self, node, _):
-        return aiger.atom(node.text)
-
-    def visit_ite(self, _, children):
-        return aiger.ite(children[1], children[3], children[5])
-
-    def visit_neg(self, _, children):
-        return ~children[1]
-
-    def visit_bdd_expr(self, _, children):
-        return children[0]
-
-    def visit_const(self, node, _):
-        return aiger.atom(node.text == "TRUE")
-
-
-def _parse_bddexpr(ite_str: str):
-    return BDDExprVisitor().visit(BDDEXPR_GRAMMAR.parse(ite_str))
-
-
-def from_bdd(bdd_func, manager=None):
+def from_bdd(node, manager=None):
     if manager is None:
-        manager = bdd_func.bdd
+        manager = node.bdd
 
-    return _parse_bddexpr(manager.to_expr(bdd_func))
+    name = node.var
+    if name is None:  # Must be a leaf True xor False node.
+        return aiger.atom(node == manager.true)
+
+    test = aiger.atom(name)
+    low, high = [from_bdd(c, manager) for c in (node.low, node.high)]
+    expr = aiger.ite(test, high, low)
+    return ~expr if node.negated else expr
 
 
 def count(circ_or_expr, fraction=False, output=None):
