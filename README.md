@@ -1,5 +1,5 @@
 # py-aiger-bdd
-[![Build Status](https://travis-ci.org/mvcisback/py-aiger-bdd.svg?branch=master)](https://travis-ci.org/mvcisback/py-aiger-bdd)
+[![Build Status](https://cloud.drone.io/api/badges/mvcisback/py-aiger-bdd/status.svg)](https://cloud.drone.io/mvcisback/py-aiger-bdd)
 [![codecov](https://codecov.io/gh/mvcisback/py-aiger-bdd/branch/master/graph/badge.svg)](https://codecov.io/gh/mvcisback/py-aiger-bdd)
 [![Updates](https://pyup.io/repos/github/mvcisback/py-aiger-bdd/shield.svg)](https://pyup.io/repos/github/mvcisback/py-aiger-bdd/)
 
@@ -9,6 +9,13 @@
 # Installation
 
 `$ pip install py-aiger-bdd`
+
+For developers, note that this project uses the
+[poetry](https://poetry.eustace.io/) python package/dependency
+management tool. Please familarize yourself with it and then
+run:
+
+`$ poetry install`
 
 # Usage
 
@@ -21,7 +28,7 @@ from aiger_bdd import to_bdd, from_bdd, count
 x = aigerbv.atom(3, 'x', signed=False) 
 
 expr = x < 5  # Could be an AIG or AIGBV or BoolExpr.
-bdd = to_bdd(expr)  # Convert circuit encoded by expr into a BDD.
+bdd, manager, input2var = to_bdd(expr)  # Convert circuit encoded by expr into a BDD.
 expr2 = from_bdd(bdd)  # Creates an Aiger Expression from a BDD.
 
 assert count(expr, fraction=True) == 5/8

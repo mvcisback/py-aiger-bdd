@@ -1,9 +1,10 @@
 import aiger
 import funcy as fn
-
 from aiger import common as cmn
 from bidict import bidict
+from fractions import Fraction
 from parsimonious import Grammar, NodeVisitor
+
 try:
     from dd.cudd import BDD
 except ImportError:
@@ -100,4 +101,4 @@ def count(circ_or_expr, fraction=False, output=None):
 
     n_inputs = len(circ_or_expr.inputs)
     num_models = f.count(n_inputs)
-    return (num_models / (2**n_inputs)) if fraction else num_models
+    return Fraction(num_models, (2**n_inputs)) if fraction else num_models
