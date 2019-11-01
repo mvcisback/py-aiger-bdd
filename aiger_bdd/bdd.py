@@ -89,9 +89,10 @@ def _parse_bddexpr(ite_str: str):
 
 
 def from_bdd(bdd_func, manager=None):
-    if manager:
-        return _parse_bddexpr(manager.to_expr(bdd_func))
-    return _parse_bddexpr(bdd_func.to_expr())
+    if manager is None:
+        manager = bdd_func.bdd
+
+    return _parse_bddexpr(manager.to_expr(bdd_func))
 
 
 def count(circ_or_expr, fraction=False, output=None):
