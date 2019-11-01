@@ -1,6 +1,6 @@
 import hypothesis.strategies as st
 from aiger import hypothesis as aigh
-from aigerbv import atom
+from aiger_bv import atom
 from hypothesis import given, settings
 
 from aiger_bdd import to_bdd, from_bdd, count
