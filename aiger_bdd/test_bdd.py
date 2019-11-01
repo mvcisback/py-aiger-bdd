@@ -24,6 +24,10 @@ def test_bdd_transform(circ):
     assert f == f2
 
 
+def test_bdd_transform_smoke():
+    to_bdd(atom(3, 'x', signed=False) < 4)
+
+
 @settings(max_examples=4, deadline=None)
 @given(st.integers(0, 7))
 def test_count_le(i):
