@@ -47,7 +47,7 @@ def to_bdd(circ_or_expr, output=None, manager=None, renamer=None):
         elif isinstance(gate, aiger.aig.Inverter):
             gate_nodes[gate] = ~gate_nodes[gate.input]
         elif isinstance(gate, aiger.aig.Input):
-            gate_nodes[gate] = manager.add_expr(input_refs_to_var[gate.name])
+            gate_nodes[gate] = manager.var(input_refs_to_var[gate.name])
         elif isinstance(gate, aiger.aig.AndGate):
             gate_nodes[gate] = gate_nodes[gate.left] & gate_nodes[gate.right]
 
