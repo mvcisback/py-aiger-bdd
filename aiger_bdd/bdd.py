@@ -20,7 +20,7 @@ def to_bdd(circ_or_expr, output=None, manager=None, renamer=None, levels=None):
             return f"x{_count}"
 
     if not isinstance(circ_or_expr, aiger.AIG):
-        circ, output = circ_or_expr.aig, fn.first(circ_or_expr.aig.outputs)
+        circ = circ_or_expr.aig
     else:
         circ = circ_or_expr
 
@@ -34,14 +34,13 @@ def to_bdd(circ_or_expr, output=None, manager=None, renamer=None, levels=None):
         output = node_map[output]  # By name instead.
 
     manager = BDD() if manager is None else manager
-    if levels is not None:
-        manager.reorder(levels)
-        manager.configure(reordering=False)
-
     input_refs_to_var = {
         ref: renamer(i, ref) for i, ref in enumerate(circ.inputs)
     }
     manager.declare(*input_refs_to_var.values())
+    if levels is not None:
+        manager.reorder(levels)
+        manager.configure(reordering=False)
 
     gate_nodes = {}
     for gate in cmn.eval_order(circ):

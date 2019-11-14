@@ -1,3 +1,4 @@
+import aiger
 import hypothesis.strategies as st
 from aiger import hypothesis as aigh
 from aiger_bv import atom
@@ -34,3 +35,17 @@ def test_count_le(i):
     expr = atom(4, 'x', signed=False) < atom(4, i, signed=False)
     assert count(expr) == i
     assert count(expr, fraction=True) == i / (2**4)
+
+
+def test_set_levels():
+    a1, c1, a2, c2 = aiger.atoms('a1', 'c1', 'a2', 'c2')
+    expr = (a1 == c1) & (a2 == c2)
+    levels = {'c1': 0, 'a1': 1, 'c2': 2, 'a2': 3}
+
+    bexpr, manager, relabels = to_bdd(
+        expr, renamer=lambda _, x: x, levels=levels
+    )
+
+    assert all(k == v for k, v in relabels.items())
+    assert bexpr.low.negated
+    assert not bexpr.high.negated
