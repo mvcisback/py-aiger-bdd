@@ -10,7 +10,7 @@ except ImportError:
     from dd.autoref import BDD
 
 
-def to_bdd(circ_or_expr, output=None, manager=None, renamer=None):
+def to_bdd(circ_or_expr, output=None, manager=None, renamer=None, levels=None):
     if renamer is None:
         _count = 0
 
@@ -34,6 +34,9 @@ def to_bdd(circ_or_expr, output=None, manager=None, renamer=None):
         output = node_map[output]  # By name instead.
 
     manager = BDD() if manager is None else manager
+    if levels is not None:
+        manager.reorder(levels)
+        manager.configure(reordering=False)
 
     input_refs_to_var = {
         ref: renamer(i, ref) for i, ref in enumerate(circ.inputs)
