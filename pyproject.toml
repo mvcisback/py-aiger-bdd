@@ -15,7 +15,7 @@ python = "^3.6"
 attrs = "^19.3"
 bidict = "^0.18.0"
 funcy = "^1.12"
-py-aiger = "^3.5.0"
+py-aiger = "^4.0.0"
 dd = "^0.5.4"
 
 [tool.poetry.dev-dependencies]
@@ -26,7 +26,7 @@ pytest-xdist = "^1.29"
 codecov = "^2.0"
 hypothesis = "^4.42"
 hypothesis_cfg = {git = "git://github.com/mvcisback/hypothesis-cfg.git"}
-py-aiger-bv = "^1.0"
+py-aiger-bv = "^2.0.0"
 
 [build-system]
 requires = ["poetry>=0.12"]
