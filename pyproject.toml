@@ -21,7 +21,6 @@ dd = "^0.5.4"
 [tool.poetry.dev-dependencies]
 pytest-cov = "^2.7"
 pytest-flake8 = "^1.0"
-pytest-sugar = "^0.9.2"
 pytest-xdist = "^1.29"
 codecov = "^2.0"
 hypothesis = "^4.42"
