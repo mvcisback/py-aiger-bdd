@@ -21,10 +21,10 @@ run:
 This tutorial assumes familiarity with [py-aiger](https://github.com/mvcisback/py-aiger) and [py-aiger-bv](https://github.com/mvcisback/py-aiger-bv).
 
 ```python
-import aigerbv
+import aiger_bv as BV
 from aiger_bdd import to_bdd, from_bdd, count
 
-x = aigerbv.atom(3, 'x', signed=False) 
+x = BV.atom(3, 'x', signed=False) 
 
 expr = x < 5  # Could be an AIG or AIGBV or BoolExpr.
 bdd, manager, input2var = to_bdd(expr)  # Convert circuit encoded by expr into a BDD.
