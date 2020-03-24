@@ -23,7 +23,7 @@ pytest-cov = "^2.7"
 pytest-flake8 = "^1.0"
 pytest-xdist = "^1.29"
 codecov = "^2.0"
-hypothesis = "^4.42"
+hypothesis = "4.28.0"
 hypothesis_cfg = {git = "git://github.com/mvcisback/hypothesis-cfg.git"}
 py-aiger-bv = "^2.0.0"
 
