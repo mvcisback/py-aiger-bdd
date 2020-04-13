@@ -37,8 +37,13 @@ def to_bdd(circ_or_expr, output=None, manager=None, renamer=None, levels=None):
     input_refs_to_var = {
         ref: renamer(i, ref) for i, ref in enumerate(circ.inputs)
     }
+
     manager.declare(*input_refs_to_var.values())
     if levels is not None:
+        assert set(manager.vars.keys()) <= set(levels.keys())
+        levels = fn.project(levels, manager.vars.keys())
+        levels = fn.walk_keys(input_refs_to_var.get, levels)
+
         manager.reorder(levels)
         manager.configure(reordering=False)
 
