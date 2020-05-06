@@ -29,9 +29,7 @@ def to_bdd(circ_or_expr, output=None, manager=None, renamer=None, levels=None):
     assert len(circ.latches) == 0
     if output is None:
         assert len(circ.outputs) == 1
-        output = node_map[fn.first(circ.outputs)]
-    else:
-        output = node_map[output]  # By name instead.
+        output = fn.first(circ.outputs)
 
     manager = BDD() if manager is None else manager
     input_refs_to_var = {
@@ -47,18 +45,9 @@ def to_bdd(circ_or_expr, output=None, manager=None, renamer=None, levels=None):
         manager.reorder(levels)
         manager.configure(reordering=False)
 
-    gate_nodes = {}
-    for gate in cmn.eval_order(circ):
-        if isinstance(gate, aiger.aig.ConstFalse):
-            gate_nodes[gate] = manager.add_expr('False')
-        elif isinstance(gate, aiger.aig.Inverter):
-            gate_nodes[gate] = ~gate_nodes[gate.input]
-        elif isinstance(gate, aiger.aig.Input):
-            gate_nodes[gate] = manager.var(input_refs_to_var[gate.name])
-        elif isinstance(gate, aiger.aig.AndGate):
-            gate_nodes[gate] = gate_nodes[gate.left] & gate_nodes[gate.right]
-
-    return gate_nodes[output], manager, bidict(input_refs_to_var)
+    inputs = {i: manager.var(input_refs_to_var[i]) for i in circ.inputs}
+    out, _ = circ(inputs, false=manager.false)
+    return out[output], manager, bidict(input_refs_to_var)
 
 
 def from_bdd(node, manager=None):
