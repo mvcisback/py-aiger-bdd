@@ -1,6 +1,5 @@
 import aiger
 import funcy as fn
-from aiger import common as cmn
 from bidict import bidict
 from fractions import Fraction
 
@@ -23,8 +22,6 @@ def to_bdd(circ_or_expr, output=None, manager=None, renamer=None, levels=None):
         circ = circ_or_expr.aig
     else:
         circ = circ_or_expr
-
-    node_map = dict(circ.node_map)
 
     assert len(circ.latches) == 0
     if output is None:
