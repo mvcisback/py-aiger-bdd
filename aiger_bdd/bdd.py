@@ -18,19 +18,21 @@ def to_bdd(circ_or_expr, output=None, manager=None, renamer=None, levels=None):
             _count += 1
             return f"x{_count}"
 
-    if not isinstance(circ_or_expr, aiger.AIG):
+    if not isinstance(circ_or_expr, aiger.BoolExpr):
         circ = circ_or_expr.aig
-    else:
-        circ = circ_or_expr
+        assert len(circ.latches) == 0
 
-    assert len(circ.latches) == 0
-    if output is None:
-        assert len(circ.outputs) == 1
-        output = fn.first(circ.outputs)
+        if output is None:
+            assert len(circ.outputs) == 1
+            output = fn.first(circ.outputs)
+
+        expr = aiger.BoolExpr(circ)
+    else:
+        expr = circ_or_expr
 
     manager = BDD() if manager is None else manager
     input_refs_to_var = {
-        ref: renamer(i, ref) for i, ref in enumerate(circ.inputs)
+        ref: renamer(i, ref) for i, ref in enumerate(expr.inputs)
     }
 
     manager.declare(*input_refs_to_var.values())
@@ -42,9 +44,9 @@ def to_bdd(circ_or_expr, output=None, manager=None, renamer=None, levels=None):
         manager.reorder(levels)
         manager.configure(reordering=False)
 
-    inputs = {i: manager.var(input_refs_to_var[i]) for i in circ.inputs}
-    out, _ = circ(inputs, false=manager.false)
-    return out[output], manager, bidict(input_refs_to_var)
+    inputs = {i: manager.var(input_refs_to_var[i]) for i in expr.inputs}
+    out = expr(inputs, false=manager.false)
+    return out, out.bdd, bidict(input_refs_to_var)
 
 
 def from_bdd(node, manager=None):

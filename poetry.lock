@@ -210,7 +210,7 @@ funcy = "*"
 hypothesis = "*"
 
 [package.source]
-reference = "542f2504881e82121c916cabadcd0fb7a436026e"
+reference = "fee01c6d8c36f33501b71ff0e84b342829968ddf"
 type = "git"
 url = "git://github.com/mvcisback/hypothesis-cfg.git"
 [[package]]
@@ -349,7 +349,7 @@ description = "A python library for manipulating sequential and-inverter gates."
 name = "py-aiger"
 optional = false
 python-versions = ">=3.6,<4.0"
-version = "4.1.1"
+version = "4.3.0"
 
 [package.dependencies]
 attrs = ">=19.3,<20.0"
@@ -365,12 +365,12 @@ description = "A python library for manipulating sequential and-inverter gates."
 name = "py-aiger-bv"
 optional = false
 python-versions = ">=3.6,<4.0"
-version = "2.1.0"
+version = "2.1.1"
 
 [package.dependencies]
 attrs = ">=19.1,<20.0"
 funcy = ">=1.12,<2.0"
-py-aiger = ">=4.0.0,<5.0.0"
+py-aiger = ">=4.1.1,<5.0.0"
 pyrsistent = ">=0.15.4,<0.16.0"
 
 [[package]]
@@ -425,7 +425,7 @@ description = "pytest: simple powerful testing with Python"
 name = "pytest"
 optional = false
 python-versions = ">=3.5"
-version = "5.4.1"
+version = "5.4.2"
 
 [package.dependencies]
 atomicwrites = ">=1.0"
@@ -569,7 +569,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "9204ce3e0de0390311126a340e5042b1a8b738ce54c0e3b7d4fb425d8b89fd3e"
+content-hash = "68dd380230a326050a78571cc0862f2d11dbd40ea9e196ba202ca2f7c5089565"
 python-versions = "^3.6"
 
 [metadata.files]
@@ -720,12 +720,12 @@ py = [
     {file = "py-1.8.1.tar.gz", hash = "sha256:5e27081401262157467ad6e7f851b7aa402c5852dbcb3dae06768434de5752aa"},
 ]
 py-aiger = [
-    {file = "py-aiger-4.1.1.tar.gz", hash = "sha256:7e7b5aa91606cf701cc64f9a8d2641818c9467c2414ab5dbcee2a181fd267357"},
-    {file = "py_aiger-4.1.1-py3-none-any.whl", hash = "sha256:c01e363111768b53c2236dbe1b791f3331e066f0be3d71a3adce6c4a2b190a16"},
+    {file = "py-aiger-4.3.0.tar.gz", hash = "sha256:d7d892ebc583f1488e10801d24f84803b733262f71c9864aa5061b66fe48a280"},
+    {file = "py_aiger-4.3.0-py3-none-any.whl", hash = "sha256:7c50b2f451351641f786cebfe2664fec43fa9a476be087caabb7931b12d69e60"},
 ]
 py-aiger-bv = [
-    {file = "py-aiger-bv-2.1.0.tar.gz", hash = "sha256:c6ab2ffd2c3689cbca47b43a2de06e2d37988e1f9170e1984eef060a3fec444d"},
-    {file = "py_aiger_bv-2.1.0-py3-none-any.whl", hash = "sha256:cd62252b21ebe107892eb7faa37ee6653530e210d1c2499ada2c0bc623702f04"},
+    {file = "py-aiger-bv-2.1.1.tar.gz", hash = "sha256:58da3fc878ece8215f7c278a3cf589e777062ef4c43f16e4d26a0c5dd381a28e"},
+    {file = "py_aiger_bv-2.1.1-py3-none-any.whl", hash = "sha256:d1ea17cacb7beb6c7ab2554846738436b932af23416e207ed7f11c1788792cea"},
 ]
 pycodestyle = [
     {file = "pycodestyle-2.5.0-py2.py3-none-any.whl", hash = "sha256:95a2219d12372f05704562a14ec30bc76b05a5b297b21a5dfe3f6fac3491ae56"},
@@ -747,8 +747,8 @@ pyrsistent = [
     {file = "pyrsistent-0.15.7.tar.gz", hash = "sha256:cdc7b5e3ed77bed61270a47d35434a30617b9becdf2478af76ad2c6ade307280"},
 ]
 pytest = [
-    {file = "pytest-5.4.1-py3-none-any.whl", hash = "sha256:0e5b30f5cb04e887b91b1ee519fa3d89049595f428c1db76e73bd7f17b09b172"},
-    {file = "pytest-5.4.1.tar.gz", hash = "sha256:84dde37075b8805f3d1f392cc47e38a0e59518fb46a431cfdaf7cf1ce805f970"},
+    {file = "pytest-5.4.2-py3-none-any.whl", hash = "sha256:95c710d0a72d91c13fae35dce195633c929c3792f54125919847fdcdf7caa0d3"},
+    {file = "pytest-5.4.2.tar.gz", hash = "sha256:eb2b5e935f6a019317e455b6da83dd8650ac9ffd2ee73a7b657a30873d67a698"},
 ]
 pytest-cov = [
     {file = "pytest-cov-2.8.1.tar.gz", hash = "sha256:cc6742d8bac45070217169f5f72ceee1e0e55b0221f54bcf24845972d3a47f2b"},
