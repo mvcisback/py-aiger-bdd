@@ -44,8 +44,13 @@ def to_bdd(circ_or_expr, output=None, manager=None, renamer=None, levels=None):
         manager.reorder(levels)
         manager.configure(reordering=False)
 
+    def lift(obj):
+        if isinstance(obj, bool):
+            return manager.true if obj else manager.false
+        return obj
+
     inputs = {i: manager.var(input_refs_to_var[i]) for i in expr.inputs}
-    out = expr(inputs, false=manager.false)
+    out = expr(inputs, lift=lift)
     return out, out.bdd, bidict(input_refs_to_var)
 
 

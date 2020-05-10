@@ -213,6 +213,7 @@ hypothesis = "*"
 reference = "fee01c6d8c36f33501b71ff0e84b342829968ddf"
 type = "git"
 url = "git://github.com/mvcisback/hypothesis-cfg.git"
+
 [[package]]
 category = "dev"
 description = "Internationalized Domain Names in Applications (IDNA)"
@@ -349,7 +350,7 @@ description = "A python library for manipulating sequential and-inverter gates."
 name = "py-aiger"
 optional = false
 python-versions = ">=3.6,<4.0"
-version = "4.3.0"
+version = "5.0.0"
 
 [package.dependencies]
 attrs = ">=19.3,<20.0"
@@ -365,12 +366,12 @@ description = "A python library for manipulating sequential and-inverter gates."
 name = "py-aiger-bv"
 optional = false
 python-versions = ">=3.6,<4.0"
-version = "2.1.1"
+version = "3.0.0"
 
 [package.dependencies]
 attrs = ">=19.1,<20.0"
 funcy = ">=1.12,<2.0"
-py-aiger = ">=4.1.1,<5.0.0"
+py-aiger = ">=5.0.0,<6.0.0"
 pyrsistent = ">=0.15.4,<0.16.0"
 
 [[package]]
@@ -569,7 +570,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "68dd380230a326050a78571cc0862f2d11dbd40ea9e196ba202ca2f7c5089565"
+content-hash = "7f7a372d5809e02e7f2c38ee350c5b4bb4c7a71fa71545d0b6ae5c38767f5ac3"
 python-versions = "^3.6"
 
 [metadata.files]
@@ -720,12 +721,12 @@ py = [
     {file = "py-1.8.1.tar.gz", hash = "sha256:5e27081401262157467ad6e7f851b7aa402c5852dbcb3dae06768434de5752aa"},
 ]
 py-aiger = [
-    {file = "py-aiger-4.3.0.tar.gz", hash = "sha256:d7d892ebc583f1488e10801d24f84803b733262f71c9864aa5061b66fe48a280"},
-    {file = "py_aiger-4.3.0-py3-none-any.whl", hash = "sha256:7c50b2f451351641f786cebfe2664fec43fa9a476be087caabb7931b12d69e60"},
+    {file = "py-aiger-5.0.0.tar.gz", hash = "sha256:54671211ee2f97fa6e0d78938c5c590d13f4412db328478e9978eda0e8770866"},
+    {file = "py_aiger-5.0.0-py3-none-any.whl", hash = "sha256:2672b3a87b421d5603023bcb601284bffaa71826b2d88595a2e6ae90e9248a33"},
 ]
 py-aiger-bv = [
-    {file = "py-aiger-bv-2.1.1.tar.gz", hash = "sha256:58da3fc878ece8215f7c278a3cf589e777062ef4c43f16e4d26a0c5dd381a28e"},
-    {file = "py_aiger_bv-2.1.1-py3-none-any.whl", hash = "sha256:d1ea17cacb7beb6c7ab2554846738436b932af23416e207ed7f11c1788792cea"},
+    {file = "py-aiger-bv-3.0.0.tar.gz", hash = "sha256:e51069e69ccf2862407edd2440242957a0cc242fac6d118f1b21d2deddca6bef"},
+    {file = "py_aiger_bv-3.0.0-py3-none-any.whl", hash = "sha256:2e7ba7c0c3769e75b8547932f32d01e7544b2d361db42d73b2eda41639c987ad"},
 ]
 pycodestyle = [
     {file = "pycodestyle-2.5.0-py2.py3-none-any.whl", hash = "sha256:95a2219d12372f05704562a14ec30bc76b05a5b297b21a5dfe3f6fac3491ae56"},
