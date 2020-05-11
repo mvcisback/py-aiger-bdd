@@ -19,7 +19,7 @@ def to_bdd(circ_or_expr, output=None, manager=None, renamer=None, levels=None):
             return f"x{_count}"
 
     if not isinstance(circ_or_expr, aiger.BoolExpr):
-        circ = circ_or_expr.aig
+        circ = aiger.to_aig(circ_or_expr, allow_lazy=True)
         assert len(circ.latches) == 0
 
         if output is None:
