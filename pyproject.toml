@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "py-aiger-bdd"
 readme="README.md"
-version = "2.1.0"
+version = "3.0.0"
 repository = "https://github.com/mvcisback/py-aiger-bdd"
 description = "Aiger to BDD bridge."
 authors = ["Marcell Vazquez-Chanlatte <mvc@linux.com>"]
@@ -15,7 +15,7 @@ python = "^3.7"
 attrs = "^19.3"
 bidict = "^0.18.0"
 funcy = "^1.12"
-py-aiger = "^5.1.0"
+py-aiger = "^6.0.0"
 dd = "^0.5.4"
 
 [tool.poetry.dev-dependencies]
@@ -25,7 +25,8 @@ pytest-xdist = "^1.29"
 codecov = "^2.0"
 hypothesis = "4.28.0"
 hypothesis_cfg = {git = "git://github.com/mvcisback/hypothesis-cfg.git"}
-py-aiger-bv = "^3.0.0"
+py-aiger-bv = "^4.0.0"
+py-aiger-ptltl = "^3.0.0"
 
 [build-system]
 requires = ["poetry>=0.12"]
