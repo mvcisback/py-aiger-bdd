@@ -12,8 +12,8 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.7"
-attrs = "^19.3"
-bidict = "^0.18.0"
+attrs = "^20.0.0"
+bidict = "^0.21.0"
 funcy = "^1.12"
 py-aiger = "^6.0.0"
 dd = "^0.5.4"
@@ -21,9 +21,9 @@ dd = "^0.5.4"
 [tool.poetry.dev-dependencies]
 pytest-cov = "^2.7"
 pytest-flake8 = "^1.0"
-pytest-xdist = "^1.29"
+pytest-xdist = "^2.0.0"
 codecov = "^2.0"
-hypothesis = "4.28.0"
+hypothesis = "^5.35.0"
 hypothesis_cfg = {git = "git://github.com/mvcisback/hypothesis-cfg.git"}
 py-aiger-bv = "^4.0.0"
 py-aiger-ptltl = "^3.0.0"
