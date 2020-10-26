@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "py-aiger-bdd"
 readme="README.md"
-version = "3.0.1"
+version = "3.0.2"
 repository = "https://github.com/mvcisback/py-aiger-bdd"
 description = "Aiger to BDD bridge."
 authors = ["Marcell Vazquez-Chanlatte <mvc@linux.com>"]
