@@ -37,7 +37,7 @@ def to_bdd(circ_or_expr, output=None, manager=None, renamer=None, levels=None):
 
     manager.declare(*input_refs_to_var.values())
     if levels is not None:
-        assert set(manager.vars.keys()) <= set(levels.keys())
+        assert set(manager.vars) <= set(levels.keys())
         levels = fn.project(levels, manager.vars.keys())
         levels = fn.walk_keys(input_refs_to_var.get, levels)
 
