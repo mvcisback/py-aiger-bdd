@@ -4,9 +4,9 @@ from bidict import bidict
 from fractions import Fraction
 
 try:
-    from dd.cudd import BDD
+    from dd.cudd import BDD, Function
 except ImportError:
-    from dd.autoref import BDD
+    from dd.autoref import BDD, Function
 
 
 def to_bdd(circ_or_expr, output=None, manager=None, renamer=None, levels=None):
@@ -76,3 +76,31 @@ def count(circ_or_expr, fraction=False, output=None):
     n_inputs = len(circ_or_expr.inputs)
     num_models = int(f.count(n_inputs))
     return Fraction(num_models, (2**n_inputs)) if fraction else num_models
+
+
+def bdd_to_nx(bexpr: Function) -> Function:
+    import networkx as nx
+    # DFS to translate edge-compelemented BDD to networkx graph.
+    dag = nx.DiGraph()
+
+    stack, visited = [(bexpr, False, int(bexpr))], set()
+    while stack:
+        bexpr, parity, ref = stack.pop()
+
+        if ref in visited:
+            continue
+
+        visited.add(ref)
+        if bexpr in (bexpr.bdd.true, bexpr.bdd.false):
+            label = (bexpr == bexpr.bdd.true) ^ parity
+            dag.add_node(ref, label=label, level=len(bexpr.bdd.vars))
+            continue
+
+        dag.add_node(ref, label=bexpr.var, level=bexpr.level)
+
+        parity = bexpr.negated ^ parity
+        for lbl, bexpr2 in [(0, bexpr.low), (1, bexpr.high)]:
+            ref2 = int(bexpr2 if parity else ~bexpr2)
+            dag.add_edge(ref, ref2, label=lbl)
+            stack.append((bexpr2, parity, ref2))
+    return dag

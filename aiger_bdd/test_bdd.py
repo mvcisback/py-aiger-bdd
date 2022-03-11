@@ -4,7 +4,7 @@ from aiger import hypothesis as aigh
 from aiger_bv import atom
 from hypothesis import given, settings
 
-from aiger_bdd import to_bdd, from_bdd, count
+from aiger_bdd import to_bdd, from_bdd, count, bdd_to_nx
 
 
 @given(aigh.Circuits)
@@ -49,3 +49,12 @@ def test_set_levels():
     assert all(k == v for k, v in relabels.items())
     assert bexpr.low.negated
     assert not bexpr.high.negated
+
+
+def test_bdd_to_nx():
+    x, y, z, w = aiger.atoms('x', 'y', 'z', 'w')
+    bexpr, *_ = to_bdd(x ^ y ^ z ^ w)
+    dag = bdd_to_nx(bexpr)
+    assert len(dag) > len(bexpr)
+    assert len(bexpr) == 5
+    assert len(dag) == 9
